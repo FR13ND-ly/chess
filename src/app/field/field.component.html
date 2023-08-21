@@ -1,0 +1,15 @@
+<section
+  (click)="click()"
+  [class.black]="getFieldColor()"
+  [class.selected]="selected"
+  cdkDropList
+  [attr.data-i]="position[0]"
+  [attr.data-j]="position[1]"
+>
+  <img
+    src="/assets/chess/{{ piece }}.png"
+    *ngIf="piece"
+    cdkDrag
+    (cdkDragDropped)="onEndDrag($event)"
+  />
+</section>

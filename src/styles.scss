@@ -1,0 +1,18 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgb(0, 0, 22);
+}
+
+.cdk-drop-list {
+  * {
+    display: none;
+  }
+  :first-child {
+    display: block;
+  }
+}

@@ -1,0 +1,12 @@
+<ng-container cdkDropListGroup>
+  <div class="row" *ngFor="let row of game.board; let i = index">
+    <app-field
+      [piece]="field.get()"
+      [selected]="isSelected(i, j)"
+      (resolveMove)="onMove($event)"
+      [position]="[i, j]"
+      *ngFor="let field of row; let j = index"
+    >
+    </app-field>
+  </div>
+</ng-container>
