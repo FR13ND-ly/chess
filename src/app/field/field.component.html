@@ -11,5 +11,6 @@
     *ngIf="piece"
     cdkDrag
     (cdkDragDropped)="onEndDrag($event)"
+    (cdkDragStarted)="onStartDrag($event)"
   />
 </section>

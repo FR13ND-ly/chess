@@ -28,4 +28,23 @@ export class PieceFactory {
                 return new Empty
         }
     }
+
+    clone(piece: any) {
+        switch (piece.type) {
+            case 'p':
+                return new Pawn(piece.color, piece.enpassantable)
+            case 'n':
+                return new Knight(piece.color)
+            case 'b':
+                return new Bishop(piece.color)
+            case 'r':
+                return new Rook(piece.color, piece.castle)
+            case 'q':
+                return new Queen(piece.color)
+            case 'k':
+                return new King(piece.color, piece.castle)
+            default:
+                return new Empty
+        }
+    }
 }

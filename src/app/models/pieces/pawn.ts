@@ -5,26 +5,27 @@ export class Pawn extends Piece {
 
     moved: boolean = false
     
-    constructor(color: string) {
+    constructor(color: string, enpassantable: any = false) {
         super();
         this.color = color
         this.value = 1
-        this.type = 'p'
+        this.type = 'p',
+        this.enpassantable = enpassantable
     }
 
     public override getAvailableMoves(position: {i : number, j: number}, board: any): void {
         let res: any = []
         let moves: any = [
-            {...position, i: position.i - 1, j : position.j - 0, hungry: false},
-            {...position, i: position.i - 1, j : position.j - 1, hungry: true},
-            {...position, i: position.i - 1, j : position.j + 1, hungry: true},
+            {i: position.i - 1, j : position.j , hungry: false},
+            {i: position.i - 1, j : position.j - 1, hungry: true},
+            {i: position.i - 1, j : position.j + 1, hungry: true},
         ]
         if (!this.moved) {
-            moves.push({...position, i: position.i - 2, j : position.j - 0, hungry: false, enpassantable: true})
+            moves.push({...position, i: position.i - 2, hungry: false, enpassantable: true})
         }
         let enpassant = [
-            {...position, i: position.i, j : position.j - 1},
-            {...position, i: position.i, j : position.j + 1},
+            {...position, j : position.j - 1},
+            {...position, j : position.j + 1},
         ]
         moves.forEach((move: any) => {
             if (!this.outOfBoundaries(move)) {
@@ -41,7 +42,7 @@ export class Pawn extends Piece {
     }
 
 
-    override move(previous: any, move: any, board: any) {
+    override move(previous: any, move: any, board: any): any {
         if (move.enpassantable) board[previous.i][previous.j].enpassantable = true
         board[previous.i][previous.j].moved = true
         board[move.i][move.j] = board[previous.i][previous.j]
@@ -49,6 +50,5 @@ export class Pawn extends Piece {
         if (move.enpassant) {
             board[previous.i][move.j] = this.pf.getPiece('')
         }
-        
     }
 }

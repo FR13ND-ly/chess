@@ -20,7 +20,7 @@ export class Bishop extends Piece {
         ]
         moves.forEach((move) => {
             let resistance = false
-            let newPosition = {i : position.i - 0 + move[0], j : position.j - 0 + move[1]}
+            let newPosition = {i : position.i + move[0], j : position.j + move[1]}
             while (!this.outOfBoundaries(newPosition) && !resistance && board[newPosition.i][newPosition.j].color != this.color) {
                 res.push(newPosition)
                 if (board[newPosition.i][newPosition.j].type != '') {

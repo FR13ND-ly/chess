@@ -4,6 +4,7 @@ export class Empty extends Piece {
     
     constructor() {
         super()
+        this.value = 0
     }
 
     override get() {
