@@ -1,11 +1,20 @@
-<ng-container cdkDropListGroup *ngIf="game$ | async as game">
+<ng-container cdkDropListGroup>
+  <div class="overlay" *ngIf="disabled">
+    <span *ngIf="game.state == 'b'">White Won</span>
+    <span *ngIf="game.state == 'w'">Black Won</span>
+    <span *ngIf="!game.player2.id">Waiting...</span>
+  </div>
   <div class="row" *ngFor="let row of game.board; let i = index">
     <app-field
-      [piece]="field.get()"
+      [piece]="field.color + field.type"
       [selected]="isSelected(i, j)"
       (resolveMove)="onMove($event, game)"
       (startDrag)="onStartDrag($event, game)"
       [position]="[i, j]"
+      [draggable]="isPlayerColor(field.color)"
+      [lmc]="isLMC(i, j)"
+      [lmp]="isLMP(i, j)"
+      [available]="isAvailable(i, j)"
       *ngFor="let field of row; let j = index"
     >
     </app-field>

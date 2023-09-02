@@ -1,0 +1,7 @@
+<app-header></app-header>
+<main *ngIf="game$ | async as game">
+  <div>
+    <app-board [disabled]="isDisabled(game)" [game]="game"></app-board>
+  </div>
+  <app-info [game]="game"></app-info>
+</main>

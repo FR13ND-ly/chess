@@ -1,16 +1,17 @@
-import { Piece } from "../piece";
-import { PieceFactory } from "../piece-factory";
+import { Piece } from "../piece";   
 
 export class Pawn extends Piece {
 
     moved: boolean = false
+    enpassantable: boolean = true
     
-    constructor(color: string, enpassantable: any = false) {
+    constructor(color: string, enpassantable: any = false, moved: any = false) {
         super();
         this.color = color
         this.value = 1
         this.type = 'p',
         this.enpassantable = enpassantable
+        this.moved = moved
     }
 
     public override getAvailableMoves(position: {i : number, j: number}, board: any): void {
@@ -20,7 +21,7 @@ export class Pawn extends Piece {
             {i: position.i - 1, j : position.j - 1, hungry: true},
             {i: position.i - 1, j : position.j + 1, hungry: true},
         ]
-        if (!this.moved) {
+        if (!board[position.i][position.j].moved) {
             moves.push({...position, i: position.i - 2, hungry: false, enpassantable: true})
         }
         let enpassant = [
@@ -44,8 +45,11 @@ export class Pawn extends Piece {
 
     override move(previous: any, move: any, board: any): any {
         if (move.enpassantable) board[previous.i][previous.j].enpassantable = true
-        board[previous.i][previous.j].moved = true
         board[move.i][move.j] = board[previous.i][previous.j]
+        board[move.i][move.j].moved = true
+        if (move.i == 0) {
+            board[move.i][move.j] = this.pf.getPiece(board[move.i][move.j].color + 'q')
+        }
         board[previous.i][previous.j] = this.pf.getPiece('')
         if (move.enpassant) {
             board[previous.i][move.j] = this.pf.getPiece('')

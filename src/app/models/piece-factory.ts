@@ -32,7 +32,7 @@ export class PieceFactory {
     clone(piece: any) {
         switch (piece.type) {
             case 'p':
-                return new Pawn(piece.color, piece.enpassantable)
+                return new Pawn(piece.color, piece.enpassantable, piece.moved)
             case 'n':
                 return new Knight(piece.color)
             case 'b':

@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 70%;
+  // padding: 1rem 1.5rem 0;
+  // background-color: #210543;
+  margin: 0 15%;
+  margin-top: 2rem;
+  border-radius: 1rem;
+}
+
+h1 {
+  font-weight: bold;
+  font-family: "Arvo", serif;
+  cursor: pointer;
+  background: repeating-linear-gradient(
+    35deg,
+    hsl(281, 100%, 50%) 0px 2px,
+    hsl(274, 100%, 50%) 0px 4px
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -5,8 +5,6 @@ export abstract class Piece {
     public value: number = 0
     public color: string = ''
     public type: string = ''
-    public enpassantable: boolean = false
-    public castleble: boolean = true
     pf = new PieceFactory()
 
     constructor() {}

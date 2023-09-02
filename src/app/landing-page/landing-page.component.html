@@ -1,0 +1,30 @@
+<section>
+  <h1 (click)="continue = false">Chessy</h1>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="continue = true"
+    *ngIf="!continue; else join"
+  >
+    Join a game
+  </button>
+  <!-- <button mat-stroked-button color="primary" (click)="onCreateGame('ai')">
+    Play with bot
+  </button> -->
+  <button mat-stroked-button color="primary" (click)="onCreateGame()">
+    Create a game
+  </button>
+</section>
+<img src="/assets/bg.jpg" class="bg" />
+<mat-form-field class="nickname" appearance="outline">
+  <mat-label>Your nickname</mat-label>
+  <input matInput [value]="nickname" />
+</mat-form-field>
+
+<ng-template #join>
+  <mat-form-field>
+    <mat-label>Game ID</mat-label>
+    <input matInput [(ngModel)]="joinGame.id" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onJoin()">Join</button>
+</ng-template>

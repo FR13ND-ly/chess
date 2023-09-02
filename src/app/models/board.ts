@@ -1,5 +1,10 @@
+import { inject } from "@angular/core"
+import { PieceFactory } from "./piece-factory"
+import { PlayerService } from "../services/player.service"
+
 export class Board {
 
+    pf = new PieceFactory()
     game: any
 
     constructor(game: any) {
@@ -7,7 +12,8 @@ export class Board {
     }
 
     getField(position: any) {
-        return this.game[position.i][position.j]
+        console.log(this.game[position.i][position.j])
+        return this.pf.clone(this.game[position.i][position.j])
     }
 
     getAvailableMoves(e: any) {
@@ -19,16 +25,9 @@ export class Board {
         let legalMove = availableMoves.find((move : any) => move.i == e.current.i && move.j == e.current.j)
         if (legalMove) {
             this.getField(e.previous).move(e.previous, legalMove, this.game)
-            this.rotateBoard()
             if (!legalMove.enpassantable) this.removeEnpassantable()
         }
         return legalMove
-    }
-
-    rotateBoard() {
-        let board = this.game
-        board.map((row: any) => row.reverse())
-        board = board.reverse()
     }
 
     removeEnpassantable() {

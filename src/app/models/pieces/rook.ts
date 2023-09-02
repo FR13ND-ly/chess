@@ -1,6 +1,8 @@
 import { Piece } from "../piece";
 
 export class Rook extends Piece {
+    
+    castleble = true
 
     constructor(color: string,castleble: any = true) {
         super();

@@ -1,0 +1,12 @@
+<h1>Game #{{ game.id }}</h1>
+<p *ngIf="!game.player2.id">
+  <b>Invitation link:</b>
+  <span class="invitation-link" (click)="copyToClipboard()">{{
+    invitationLink
+  }}</span>
+</p>
+<p><b>White Pieces</b>: {{ game.player1.username }}</p>
+<p>
+  <b>Black Pieces</b>: {{ game.player2.id ? game.player2.username : "waiting" }}
+</p>
+<p><b>To Move</b>: {{ game.turn == "b" ? "Black" : "White" }}</p>

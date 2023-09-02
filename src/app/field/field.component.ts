@@ -11,11 +11,12 @@ export class FieldComponent {
   @Input() selected: boolean = false
   @Input() position: any = [null, null]
   @Input() piece: string = ''
+  @Input() lmp: boolean = false
+  @Input() lmc: boolean = false
+  @Input() available: boolean = false
+  @Input() draggable: boolean = false
   @Output() resolveMove = new EventEmitter()
   @Output() startDrag = new EventEmitter()
-  click() {
-    // this.resolveMove.emit()
-  }
 
   onEndDrag(e : any) {
     let pvContainerData = e.previousContainer.element.nativeElement.dataset
@@ -29,7 +30,7 @@ export class FieldComponent {
       j : parseInt(ctContainerData.j)
     }
     let move = {
-      type: 'drop',
+      // type: 'drop',
       previous,
       current
     }

@@ -2,6 +2,8 @@ import { Piece } from "../piece";
 
 export class King extends Piece {
 
+    castleble = true
+
     constructor(color: string, castleble: any = true) {
         super();
         this.color = color
